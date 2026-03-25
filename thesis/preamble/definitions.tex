@@ -1,0 +1,54 @@
+
+\DeclarePairedDelimiter\bra{\langle}{\rvert}
+\DeclarePairedDelimiter\ket{\lvert}{\rangle}
+\DeclarePairedDelimiterX\braket[2]{\langle}{\rangle}{#1\,\delimsize\vert\,\mathopen{}#2}
+\DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
+\DeclarePairedDelimiter{\floor}{\lfloor}{\rfloor}
+
+\DeclarePairedDelimiter{\norm}{||}{||}
+
+%\renewcommand{\vec}[1]{\underline{\bm{#1}}}
+\renewcommand{\vec}[1]{\bm{#1}}
+\NewDocumentCommand{\pkg}{o m}{%
+  \texttt{#2}%
+  \IfValueT{#1}{\,(Version \texttt{#1})}%
+}
+\newcommand\caret{\text{\textasciicircum}}
+
+
+\newcommand{\cnc}[1]{\mathtt{#1}}
+
+\newcommand{\grad}{\vec\nabla}
+\renewcommand{\div}{\vec{\nabla} \cdot}
+\newcommand{\curl}{\vec{\nabla} \times}
+
+\newcommand{\mat}[1]{\underline{\underline{#1}}}
+\newcommand{\Hess}{\mat{\mathrm{Hess}}}
+
+\newcommand{\degree}{^\circ}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\renewcommand{\i}{\mathrm{i}}
+\newcommand{\M}{\mathcal{M}}
+\renewcommand{\L}{\mathcal{L}}
+\renewcommand{\O}{\mathcal{O}}
+\newcommand{\Id}{{\mathbb{1}}}
+\newcommand{\Diag}{\mat{Diag}}
+
+\newcommand{\unit}[1]{\mathrm{#1}}
+
+\lstdefinelanguage{Julia}%
+  {morekeywords={abstract,break,case,catch,const,continue,do,else,elseif,%
+      end,export,false,for,function,immutable,import,importall,if,in,let,%
+      macro,module,otherwise,quote,return,switch,true,try,type,typealias,%
+      using,while},%
+   sensitive=true,%
+   alsoother={\$},%
+   morecomment=[l]\#,%
+   morecomment=[n]{\#=}{=\#},%
+   morestring=[s]{"}{"},%
+   morestring=[m]{'}{'},%
+}[keywords,comments,strings]%

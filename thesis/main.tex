@@ -1,0 +1,63 @@
+\documentclass[
+    twoside,
+    footsepline=0.4pt,
+    cleardoublepage=plain,
+]{tuwthesis}
+
+\input{preamble/header}
+\input{preamble/definitions}
+%\input{preamble/titlepage}
+
+\addbibresource{bibs/intro.bib}
+\addbibresource{bibs/articles.bib}
+\addbibresource{bibs/books.bib}
+\addbibresource{bibs/libs.bib}
+
+%\title{TBD}
+\title{On the Equilibrium of Trapped Polarizable Nanoparticles in Optical Cavities}
+
+\university{Technical University of Vienna}
+\institute{Institute for Theoretical Physics}
+
+\acProgram{Bachelor programme Technical Physics 
+        (\href{https://tiss.tuwien.ac.at/curriculum/public/curriculum.xhtml?key=37273}{033 261})}
+
+\supervisor{Asst.Prof. Dr. Carlos Gonzalez Ballestero}
+\cosupervisor{S. Gupta {MSc} \\L. Papa {MSc}}
+
+\author{Daniel Steinmaurer (12302535)} 
+
+%\address{\href{https://maps.tuwien.ac.at/?q=DB03H05}{Wiedner Hauptstraße 8-10, Tower B\\3rd Floor, Room H05}}
+\date{\today}
+
+\begin{document}
+
+%TITLEPAGE
+\maketitle 
+
+% AVIDAVID; ABSTRACT; TOC
+\frontmatter
+\input{chapters/00_declaration} \cleardoublepage
+\input{chapters/01_abstract} \cleardoublepage 
+
+\tableofcontents \cleardoublepage
+
+%CONTENTS
+\mainmatter
+\input{chapters/09_introduction}
+\input{chapters/10_single_cavity} 
+\input{chapters/11_n_particles} 
+\input{chapters/12_2_particles} 
+\input{chapters/14_summary}
+\input{chapters/13_outlook}
+
+\newpage \cleardoublepage
+
+\backmatter
+\input{chapters/97_thanks}
+\input{chapters/98_backmatter}
+
+\newpage \cleardoublepage
+\appendix
+\input{chapters/99_appendix}
+\end{document}

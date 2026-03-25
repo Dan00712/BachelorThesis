@@ -1,0 +1,132 @@
+\chapter{Notation}
+
+\renewcommand{\arraystretch}{1.3}
+\begin{longtable}{|r|l|}
+    \hline
+        \textbf{Name} & \textbf{Used Symbol} \\ \hline 
+        \hline
+         Natural Numbers & $\N = \{ 0,1,2, ... \}$ \\ \hline
+         Integers & $\Z$ \\ \hline
+         Rational Numbers & $\Q$ \\ \hline
+         Real Numbers & $\R$ \\ \hline 
+         Complex Numbers & $\C$ \\ \hline
+         Imaginary Unit & $\i$ \\ \hline
+         Complex conjugate & $z^*$ \\ \hline
+         Real/Imaginary Part & $\Re z$/ $\Im z$ \\ \hline
+         Cartesian product & $\M \times \mathcal{N}$ \\ \hline
+         Vectors & $\vec v$ \\ \hline
+         Basis vectors & $\vec e_x, \vec e_y, \vec e_z$ \\ \hline
+         Matrix & $\mat{A}$ \\ \hline
+         Transpose & $\mat{A}^T$ \\ \hline
+         Hermitian conjugate & $\mat{A}^\dagger$ \\ \hline
+         Diagonal Matrix & $\Diag(v_1, ... v_n) = \begin{pmatrix}
+             v_1 \\
+             & \ddots \\
+             & & v_n
+         \end{pmatrix}$ \\ \hline
+         Scalar field & $f = f(\vec v)$ \\ \hline
+         Vector field & $\vec F = \vec F(\vec v)$ \\ \hline
+         Gradient & $\grad f$ \\ \hline
+         Gradient w.r.t the variables $\vec v = [x,y,z]$ & $\grad_{\vec v} f$ \\ \hline
+         Gradient w.r.t the position of the $n$-th particle & $\grad_n f$ \\ \hline
+         Divergence & $\div \vec F$ \\ \hline
+         Curl & $\curl \vec F$ \\ \hline
+         Hessian & $\Hess f$ \\ \hline
+    \caption{Table of Symbols}
+    \label{tab:apdx:not:symb}
+\end{longtable}
+\renewcommand{\arraystretch}{1.0}
+When applying a special set of variables,
+    the operator will be annotated by a subscript.
+
+\chapter{Single Particle}
+\section{Transformation of the Hessian}
+\label{apdx:sp:hessian:1d}
+
+We have the Hamiltonian $H(\vec r, \vec p, a_c, a_c^*)$, 
+    we cannot calculate the Hessian directly with complex variables,
+    since we can only take derivatives with respect to real variables.
+To get the Hessian,
+    we reformulate the Hamiltonian to $H(\vec r, \vec p, \Re a, \Im a)$,
+    which we then can take the Hessian of.
+In this formulation we define $\vec\eta' = [\vec r, \vec p, \Re a, \Im a]^T$.
+So the Hessian can be formulated as
+\begin{equation}
+\label{apdx:hess:1d:deletas}
+    \delta^2 H = \delta \vec\eta'^\dagger \cdot \Hess_{\vec\eta'}{H} \cdot \delta \vec\eta'.
+\end{equation}
+We then define a linear transform $\mat{T}$,
+    to satisfy $\vec\eta = \mat{T}\cdot\vec\eta'$.
+%We then decompose $\mat{T}$ into a transform of $(\Re a, \Im a)\mapsto (a, a^*)$
+%    and a permutation that changes the order of the variables.
+%We write this as $\mat{T'} = \mat{P}\cdot\mat{T}$.
+
+This fixes the transform $\mat{T}$ to
+\begin{equation}
+    \mat{T} = \begin{pmatrix}
+        \Id_{dim\vec r + \dim\vec p} \\
+        & \tfrac12 & - \tfrac{\i}{2} \\
+        & \tfrac{1}{2} & \tfrac{\i}{2}
+    \end{pmatrix}.
+\end{equation}
+This transform restores the Wirtinger derivative
+\begin{equation}
+    \frac{\partial}{\partial z} = 
+        \frac{1}{2} 
+            \left( \frac{\partial}{\partial\Re z} - \i \frac{\partial}{\partial\Im z}\right).
+\end{equation}
+
+%And we can write the permutation as
+%\begin{equation}
+%    \mat{P} = \begin{pmatrix}
+%        \Id_{\dim \vec r}\\
+%        & & 1 \\
+%        & \Id_{\dim \vec p} \\
+%        & & & 1
+%    \end{pmatrix}
+%\end{equation}
+
+With those definitions we can rewrite the Equation \ref{apdx:hess:1d:deletas} to
+\begin{align}
+    \delta^2 H & = 
+        \delta \vec\eta^\dagger \cdot \left(\mat{T}^{-1} \right)^\dagger
+        \cdot \Hess_{\vec\eta'}{H} \cdot 
+        \mat{T}^{-1} \cdot\delta \vec\eta,
+\end{align}
+which gives us the full Hessian for further analysis.
+
+\section{Keeping the Field at its equilibrium}
+\label{apdx:sp:fcf}
+To check the stability we view the System in a perturbed state $\vec\eta=\vec\eta_0 + \delta\vec\eta$.
+We do this for a small perturbation in $z$.
+Here we assume that $a$ reaches its equilibrium much faster than $z$,
+    such that $a = \alpha_c^{eq}(\vec r)$ always holds.
+From Hamilton's equations we immediately get $\dot z = \partial_{p_z} H = p_z/m = 0$.
+With this, we know our dynamics are governed by $\ddot z = \dot p_z/m$,
+    which we can get from the results in Equation \eqref{eq:sp:z-stabil}.
+\begin{equation}
+    \ddot z = \frac\alpha m |E_t|^2 L_z.
+\end{equation}
+If $\ddot z$ points toward the equilibrium, we have a strong indicator that the System is stable and vice versa.
+A result of checking this stability can be seen in Figure \ref{fig:apdx:zfasta:stability}.
+For this simulation, we assume that the system is stable 
+    if the restoring force points opposite to the perturbation.
+
+Here we get the optical bistability we would expect from intuition.
+However,
+    the approximation is not physical,
+    since the cavity needs a finite non-zero relaxation time,
+    that will not be instantaneous.
+    
+
+\begin{figure}%[h]
+    \centering
+    %\input{chapters/10_single_cavity/stabilities}
+    \includegraphics[width=.8\textwidth]{chapters/99_appendix/stabilities.pdf}
+    \caption{
+    Plot of the equilibrium position at $\kappa = 180.0 ~ 2\pi kHz$\\ 
+    showing the stability of the equilibrium points\\ 
+    with the parameters of Table \ref{tab:sp:sim:params}
+    }
+    \label{fig:apdx:zfasta:stability}
+\end{figure}

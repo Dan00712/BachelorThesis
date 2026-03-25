@@ -1,0 +1,46 @@
+\chapter{Introduction}
+\label{intro}
+
+Recent developments led to the emergence of the field of levitodynamics.
+This field is primarily concerned with understanding, controlling, and using levitated nanoparticles.
+It does so by using techniques developed in other research fields such as atomic physics and biophysics \cite{doi:10.1126/science.abg3027}.
+A large contributor was 2018 Nobel Prize winner Arthur Ashkin \cite{10.1063/1.88748,PhysRevLett.24.156},
+    whose early work on optical tweezers is resurfacing in this field \cite{PhysRevLett.122.123601}.
+His research was continued 
+    and current experimental work in this field has further advanced the frontier \cite{troyer2025quantumgroundstatecoolinglibrational}.
+The high finesse cavities have also developed in recent times \cite{PhysRevLett.133.233603,Millen_2020}.
+Levitodynamics has already been successful in the production of precise and novel sensors \cite{Moore_2021,doi:10.1126/sciadv.abo2361};
+    in the future, a large goal is, among others, to gain insight into the quantum-to-classical transition \cite{gupta2025quantumtheoryelectricallylevitated,Millen_2020}.
+\par 
+Our model is based on References \cite{Maurer_2023,Gonzalez_Ballestero_2019}.
+In this thesis, we investigate a trapped nanoparticle
+    that is coupled to an optical cavity.
+This cavity is driven by the scattering of photons off the particle.
+A sketch of the setup can be seen in Figure \ref{fig:sp:setup}.
+We then find the equilibrium positions by analytic and numerical methods.
+For the numeric part, we are using the Julia Programming language \cite{Julia-2017},
+    which provides high performance and high adaptability.
+Contrary to the research we base this thesis on, 
+    we treat this system classically.
+Establishing a rigorous baseline is a necessary step in identifying quantum mechanical effects in the future.
+Since we do not explicitly study related quantum phenomena,
+    we may restrict ourselves to the classical description.
+%We would expect that the quantum expected values will follow the classical results,
+%    following from the Ehrenfest theorem.
+\par
+In Chapter \ref{ch:sp} we will derive the model for a single particle 
+    and give the equilibrium positions as a plot of the detuning vs the $z$ values.
+Using the numeric results we use the Hessian to compute the stability of the system.
+\par
+In Chapter \ref{ch:np} we extend this model to include $N$-particles. 
+Here we also introduce necessary conditions 
+    and generalize the model.
+\par
+In Chapter \ref{ch:2p} we use this model to find the equilibrium positions for $2$ particles.
+We generate and analyze those results for different phases in the tweezers.
+\par
+In Chapter \ref{ch:sum} we summarize our results 
+    and give a brief overview.
+\par
+Finally, in Chapter \ref{ch:otl} we give an outlook on future research options 
+    and topics worth analyzing further.
