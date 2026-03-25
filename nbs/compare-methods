@@ -1,0 +1,75 @@
+### A Pluto.jl notebook ###
+# v0.20.21
+
+using Markdown
+using InteractiveUtils
+
+# ╔═╡ 6e2a4cc2-f3db-11f0-b4c7-1fb04fe41236
+begin 
+	using DrWatson
+	HOME = ENV["HOME"]
+	DrWatson.quickactivate(
+		joinpath(HOME, "projects", "bac", "CavityEquilibria"),
+		"CavityEquilibria")
+
+
+	using JLD2
+	using Plots
+end;
+
+# ╔═╡ c1f89a5c-e8f5-4f7b-964a-5e3622b03f2e
+sΔ, sz = let
+	sp = datadir("sp-ref", "s-2026-01-01T22-03-04.jld2")
+	@load sp M
+	M.Δω, M.zmin*1e6
+end
+
+# ╔═╡ ed662d22-7161-42b6-8a19-749f84781494
+nΔo, nzo = let
+	np = datadir("N-Particle", "P1-test", "nlsolve.jld2")
+	@load np w z
+	w, z
+end
+
+# ╔═╡ 2eb67aed-03ef-4223-9f93-496335bf83f6
+# ╠═╡ disabled = true
+#=╠═╡
+nΔ, nz = let
+	np = datadir("N-Particle", "P1-test", "optim.jld2")
+	@load np w z
+	w, z
+end
+  ╠═╡ =#
+
+# ╔═╡ 9a27fdfd-72f7-49eb-872c-b0ed419c7548
+begin
+	p = plot(;
+			 yaxis=:log,
+			 ylims=[1e-1, 5e1],
+			 xlabel="Δ /2πHz",
+			 ylabel="z/μm",
+			 legend=:bottomleft
+	)
+
+	scatter!(p,
+			 sΔ/2π * 1e-3, sz,
+			label="SP-sim"
+			)
+	scatter!(p,
+			 nΔo/2π * 1e-3, # .+ 25, 
+			 nzo,
+			 label="NP-sim-nlsolve",
+	)
+	#=scatter!(p,
+			 nΔ/2π * 1e-3, nz,
+			 label="NP-sim-jump",
+	)=#
+	p
+end
+
+# ╔═╡ Cell order:
+# ╠═6e2a4cc2-f3db-11f0-b4c7-1fb04fe41236
+# ╠═c1f89a5c-e8f5-4f7b-964a-5e3622b03f2e
+# ╠═ed662d22-7161-42b6-8a19-749f84781494
+# ╠═2eb67aed-03ef-4223-9f93-496335bf83f6
+# ╠═9a27fdfd-72f7-49eb-872c-b0ed419c7548
