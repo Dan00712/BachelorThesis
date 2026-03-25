@@ -1,3 +1,6 @@
 [submodule "SingleCavity"]
 	path = SingleCavity
 	url = git@github.com:Dan00712/Bac-Code-SingleCavity.git
+[submodule "Cavity-Equilibria"]
+	path = Cavity-Equilibria
+	url = git@github.com:Dan00712/Cavity-Equilibria
